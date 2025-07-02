@@ -12,7 +12,6 @@ int main() {
 
     int a_val = 1, b_val = 2, c_val = 3, d_val = 4;
 
-    // Create matrix A and B
     Matrix* A = create_matrix(2, 2, intType);
     Matrix* B = create_matrix(2, 2, intType);
 
@@ -54,7 +53,7 @@ int main() {
     printf("After adding linear combination to row 0 (alpha = {0, 2}):\n");
     print_matrix(linear);
 
-    // Free all matrices
+    
     free_matrix(A);
     free_matrix(B);
     free_matrix(sum);
