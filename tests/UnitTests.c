@@ -299,7 +299,7 @@ void test_set_element_out_of_bounds(void) {
         set_element(m, i / 2, i % 2, &vals[i]);
 
     int invalid = 99;
-    set_element(m, 10, 10, &invalid); // попытка за пределы
+    set_element(m, 10, 10, &invalid);
 
     for (int i = 0; i < 4; ++i) {
         int actual = ((integer_t*)m->data[i / 2][i % 2])->value;
