@@ -16,17 +16,7 @@ FieldInfo* GetIntFieldInfo();
 FieldInfo* GetDoubleFieldInfo();
 FieldInfo* GetComplexFieldInfo();
 
-typedef struct {
-    int value;
-} integer_t;
-
-typedef struct {
-    double value;
-} my_double_t;
-
-typedef struct {
-    Complex value;
-} complex_t;
+// избавиться от всего лишнего
 
 void set_int(void* dest, void* value);
 void* sum_int(void* a, void* b);

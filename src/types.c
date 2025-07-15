@@ -3,75 +3,75 @@
 #include <stdlib.h>
 
 void set_int(void* dest, void* value) {
-    ((integer_t*)dest)->value = *((int*)value);
+    *(int*)dest = *((int*)value);
 }
 
 void* sum_int(void* a, void* b) {
-    integer_t* result = malloc(sizeof(integer_t));
+    int* result = malloc(sizeof(int));
     if (!result) return NULL;
-    result->value = ((integer_t*)a)->value + ((integer_t*)b)->value;
+    *result = *(int*)a + *(int*) b;
     return result;
 }
 
 void* mul_int(void* a, void* b) {
-    integer_t* result = malloc(sizeof(integer_t));
+    int* result = malloc(sizeof(int));
     if (!result) return NULL;
-    result->value = ((integer_t*)a)->value * ((integer_t*)b)->value;
+    *result = *(int*)a * *(int*) b;
     return result;
 }
 
 void to_string_int(void* element) {
-    printf("%d ", ((integer_t*)element)->value);
+    printf("%d ", *(int*) element);
 }
 
 
 
 
 void set_double(void* dest, void* value) {
-    ((my_double_t*)dest)->value = *((double*)value);
+    *(double*)dest = *((double*)value);
 }
 
 void* sum_double(void* a, void* b) {
-    my_double_t* result = malloc(sizeof(my_double_t));
+    double* result = malloc(sizeof(double));
     if (!result) return NULL;
-    result->value = ((my_double_t*)a)->value + ((my_double_t*)b)->value;
+    *result = (*(double*)a) + (*(double*)b);
     return result;
 }
 
 void* mul_double(void* a, void* b) {
-    my_double_t* result = malloc(sizeof(my_double_t));
+    double* result = malloc(sizeof(double));
     if (!result) return NULL;
-    result->value = ((my_double_t*)a)->value * ((my_double_t*)b)->value;
+    *result = (*(double*)a) * (*(double*)b);
     return result;
 }
 
 void to_string_double(void* element) {
-    printf("%lf ", ((my_double_t*)element)->value);
+    printf("%lf ", *(double*) element);
 }
 
 
 
 
 void set_complex(void* dest, void* value) {
-    ((complex_t*)dest)->value = *((Complex*)value);
+    *(Complex*)dest = *((Complex*)value);
 }
 
 void* sum_complex(void* a, void* b) {
-    complex_t* result = malloc(sizeof(complex_t));
+    Complex* result = malloc(sizeof(Complex));
     if (!result) return NULL;
-    result->value = get_complex_sum(((complex_t*)a)->value, ((complex_t*)b)->value);
+    *result = get_complex_sum(*(Complex*) a, *(Complex*) b);
     return result;
 }
 
 void* mul_complex(void* a, void* b) {
-    complex_t* result = malloc(sizeof(complex_t));
+    Complex* result = malloc(sizeof(Complex));
     if (!result) return NULL;
-    result->value = get_complex_product(((complex_t*)a)->value, ((complex_t*)b)->value);
+    *result = get_complex_product(*(Complex*) a, *(Complex*) b);
     return result;
 }
 
 void to_string_complex(void* element) {
-    Complex val = ((complex_t*)element)->value;
+    Complex val = *(Complex*)element; 
     printf("%.2lf + %.2lfi ", val.real, val.img);
 }
 
@@ -86,7 +86,7 @@ static FieldInfo* COMPLEX_FIELD_INFO = NULL;
 FieldInfo* GetIntFieldInfo() {
     if (!INT_FIELD_INFO) {
         INT_FIELD_INFO = malloc(sizeof(FieldInfo));
-        INT_FIELD_INFO->size = sizeof(integer_t);
+        INT_FIELD_INFO->size = sizeof(int);
         INT_FIELD_INFO->to_string = to_string_int;
         INT_FIELD_INFO->sum = sum_int;
         INT_FIELD_INFO->mul = mul_int;
@@ -98,7 +98,7 @@ FieldInfo* GetIntFieldInfo() {
 FieldInfo* GetDoubleFieldInfo() {
     if (!DOUBLE_FIELD_INFO) {
         DOUBLE_FIELD_INFO = malloc(sizeof(FieldInfo));
-        DOUBLE_FIELD_INFO->size = sizeof(my_double_t);
+        DOUBLE_FIELD_INFO->size = sizeof(double);
         DOUBLE_FIELD_INFO->to_string = to_string_double;
         DOUBLE_FIELD_INFO->sum = sum_double;
         DOUBLE_FIELD_INFO->mul = mul_double;
@@ -110,7 +110,7 @@ FieldInfo* GetDoubleFieldInfo() {
 FieldInfo* GetComplexFieldInfo() {
     if (!COMPLEX_FIELD_INFO) {
         COMPLEX_FIELD_INFO = malloc(sizeof(FieldInfo));
-        COMPLEX_FIELD_INFO->size = sizeof(complex_t);
+        COMPLEX_FIELD_INFO->size = sizeof(Complex);
         COMPLEX_FIELD_INFO->to_string = to_string_complex;
         COMPLEX_FIELD_INFO->sum = sum_complex;
         COMPLEX_FIELD_INFO->mul = mul_complex;
